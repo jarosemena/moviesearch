@@ -1,57 +1,65 @@
-# 🎬 Movie Explorer
+# 🎬 Movie Explorer - Aplicación React con TMDB API
 
-Aplicación React moderna para descubrir películas usando la API de TMDB con funcionalidades avanzadas de búsqueda, filtrado y gestión de favoritos.
+> Aplicación React moderna para descubrir películas usando la API de TMDB. Implementa arquitectura hexagonal con funcionalidades avanzadas de búsqueda, filtrado y gestión de favoritos.
 
-## ✨ Características
+[English Version](./README_EN.md) | [Documentación Completa](./PROJECT_SUMMARY.md)
 
-### Funcionalidades Principales
+## ✨ Características Principales
 
-- **Búsqueda en tiempo real** con debounce (300ms)
-- **Filtros avanzados combinables:**
-  - Género (selección múltiple)
-  - Rango de años (1990-2024)
-  - Rating mínimo (0-10)
-  - Idioma original
-  - Ordenamiento por popularidad, rating o fecha
-- **Sistema de favoritos** con persistencia en LocalStorage
-- **Match aleatorio** - Botón "No sé qué ver" que sugiere películas
-- **Paginación** con carga incremental
-- **Diseño responsive** mobile-first
-- **Estados de carga y error** bien manejados
+### 🔍 Búsqueda y Filtrado
+- ✅ Búsqueda en tiempo real con debounce (300ms)
+- ✅ Filtros combinables: género, año, rating, idioma
+- ✅ Ordenamiento múltiple (popularidad, rating, fecha)
+- ✅ Paginación con carga incremental
+
+### ❤️ Sistema de Favoritos
+- ✅ Agregar/remover películas con un clic
+- ✅ Persistencia en LocalStorage
+- ✅ Vista dedicada de favoritos
+- ✅ Sincronización en toda la app
+
+### 🎲 Match Aleatorio
+- ✅ Sugerencia de película random
+- ✅ Excluye películas vistas/favoritas
+- ✅ Detalles completos en modal
+
+### 🎨 Experiencia de Usuario
+- ✅ Diseño responsive mobile-first
+- ✅ Estados de carga y error
+- ✅ Mensajes para estados vacíos
+- ✅ Transiciones suaves
 
 ## 🏗️ Arquitectura
 
-El proyecto sigue una **arquitectura hexagonal** (puertos y adaptadores) con separación clara de responsabilidades:
+Implementa **Arquitectura Hexagonal** con separación en capas:
 
 ```
 src/
-├── domain/              # Capa de dominio (entidades y contratos)
-│   ├── models/         # Modelos de negocio
-│   └── repositories/   # Interfaces de repositorios
-├── application/        # Casos de uso
-│   └── useCases/
-├── infrastructure/     # Implementaciones concretas
+├── domain/              # Entidades y contratos
+│   ├── models/         # Movie, Genre
+│   └── repositories/   # Interfaces
+├── application/         # Casos de uso
+│   └── useCases/       # GetMovies, Search, Favorites, Random
+├── infrastructure/      # Implementaciones
 │   ├── api/           # Cliente TMDB
-│   └── repositories/  # Repositorios concretos
-└── presentation/      # Capa de presentación
-    ├── components/    # Componentes React
-    ├── pages/        # Páginas
-    ├── context/      # Contexto global
-    └── hooks/        # Hooks personalizados
+│   └── repositories/  # TMDB, LocalStorage
+└── presentation/        # Componentes React
+    ├── components/    # UI Components
+    ├── pages/        # Home, Favorites
+    ├── context/      # AppContext
+    └── hooks/        # useDebounce
 ```
 
-## 🚀 Instalación
+## 🚀 Instalación Rápida
 
-### 1. Clonar e instalar dependencias
-
+### 1. Instalar dependencias
 ```bash
 npm install
 ```
 
-### 2. Configurar Access Token de TMDB
-
+### 2. Configurar Access Token
 1. Obtén tu Access Token (Read Access Token) en [TMDB](https://www.themoviedb.org/settings/api)
-2. Crea un archivo `.env` en la raíz del proyecto:
+2. Edita el archivo `.env`:
 
 ```env
 VITE_TMDB_ACCESS_TOKEN=tu_access_token_aqui
@@ -59,120 +67,152 @@ VITE_TMDB_BASE_URL=https://api.themoviedb.org/3
 VITE_TMDB_IMAGE_BASE_URL=https://image.tmdb.org/t/p
 ```
 
-**Nota:** El Access Token es diferente a la API Key. Usa el "Read Access Token" que comienza con "eyJ..."
+**⚠️ Importante:** Usa el "Read Access Token" (JWT que comienza con "eyJ..."), NO la API Key v3
 
 ### 3. Verificar conexión (Opcional)
-
 ```bash
-# Probar la conexión con TMDB API
 node test-api.js
 ```
 
-### 4. Ejecutar la aplicación
-
+### 4. Ejecutar
 ```bash
-# Modo desarrollo
 npm run dev
-
-# Build para producción
-npm run build
-
-# Preview del build
-npm run preview
-
-# Ejecutar tests
-npm test
 ```
+
+Abre `http://localhost:5173` en tu navegador.
+
+## 📚 Documentación
+
+| Archivo | Descripción |
+|---------|-------------|
+| [QUICK_START.md](./QUICK_START.md) | Guía de inicio rápido |
+| [SETUP.md](./SETUP.md) | Configuración detallada |
+| [FEATURES.md](./FEATURES.md) | Características detalladas |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | Explicación de arquitectura |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Guía para contribuir |
+| [API_AUTHENTICATION.md](./API_AUTHENTICATION.md) | Autenticación con TMDB |
+| [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md) | Resumen del proyecto |
 
 ## 🎯 Uso
 
 ### Búsqueda y Filtrado
-
-1. Usa la barra de búsqueda para encontrar películas por título
-2. Despliega los filtros para refinar tu búsqueda:
-   - Selecciona uno o varios géneros
-   - Define un rango de años
-   - Establece un rating mínimo
+1. Escribe en la barra de búsqueda para encontrar películas
+2. Usa los filtros para refinar resultados:
+   - Selecciona géneros (múltiple)
+   - Define rango de años (1990-2024)
+   - Establece rating mínimo (0-10)
    - Filtra por idioma original
-   - Cambia el orden de los resultados
+   - Ordena por popularidad, rating o fecha
 
 ### Favoritos
-
-- Haz clic en el corazón de cualquier película para agregarla a favoritos
-- Accede a tu lista de favoritos desde el menú de navegación
-- Los favoritos se guardan automáticamente en tu navegador
+- Click en 🤍 para agregar a favoritos
+- Click en ❤️ para remover de favoritos
+- Accede a "❤️ Favoritas" en el menú para ver tu lista
 
 ### Match Aleatorio
+- Click en "🎲 No sé qué ver" para obtener una sugerencia
+- El sistema excluye películas ya vistas y favoritas
 
-- Haz clic en "🎲 No sé qué ver" para obtener una sugerencia aleatoria
-- El sistema excluye películas que ya están en tus favoritos
-- Se muestra el detalle completo de la película sugerida
-
-### Detalles de Película
-
-- Haz clic en cualquier tarjeta de película para ver más información
-- Visualiza el backdrop, sinopsis completa y metadatos
-- Agrega o quita de favoritos directamente desde el modal
+### Detalles
+- Click en cualquier película para ver detalles completos
+- Visualiza backdrop, sinopsis y metadatos
+- Gestiona favoritos desde el modal
 
 ## 🛠️ Stack Tecnológico
 
-- **React 18** - Biblioteca UI
-- **Vite** - Build tool y dev server
-- **Styled Components** - Estilos CSS-in-JS
-- **Vitest** - Framework de testing
-- **Testing Library** - Utilidades de testing
-- **TMDB API** - Fuente de datos de películas
+- **React 18.3.1** - Biblioteca UI
+- **Vite 5.4.0** - Build tool y dev server
+- **Styled Components 6.1.12** - Estilos CSS-in-JS
+- **React Router 6.26.0** - Navegación
+- **Vitest 2.0.5** - Framework de testing
+- **Testing Library 16.0.0** - Utilidades de testing
+- **TMDB API v3** - Fuente de datos de películas
 
-## 📱 Responsive Design
+## 📱 Responsive
 
-La aplicación está optimizada para:
-- 📱 Móviles (< 768px)
-- 💻 Tablets y Desktop (≥ 768px)
+Optimizado para:
+- 📱 Móviles (< 768px) - Grid 2 columnas
+- 💻 Tablets y Desktop (≥ 768px) - Grid 3-6 columnas
 
 ## 🧪 Testing
 
 ```bash
-# Ejecutar tests
-npm test
-
-# Tests en modo watch
-npm test -- --watch
-
-# Coverage
-npm test -- --coverage
+npm test              # Ejecutar tests
+npm test -- --watch   # Modo watch
+npm test -- --coverage # Con cobertura (99.4%)
 ```
+
+**Coverage:** 99.4% statements | 94.87% branches | 100% functions | 99.4% lines
+
+## 🎯 Comandos Disponibles
+
+```bash
+npm run dev      # Servidor de desarrollo
+npm run build    # Build para producción
+npm run preview  # Preview del build
+npm test         # Ejecutar tests
+```
+
+## 🆘 Problemas Comunes
+
+### Error 401 de API
+- Verifica que tu Access Token esté en `.env`
+- Asegúrate de usar el "Read Access Token" (JWT)
+- Reinicia el servidor con `Ctrl+C` y `npm run dev`
+
+### Módulos no encontrados
+```bash
+npm install
+```
+
+### Página en blanco
+- Abre DevTools (F12)
+- Verifica errores en consola
+- Confirma que `.env` existe y tiene el token
 
 ## 🎨 Personalización
 
-### Colores
-
-Los colores principales se definen en `src/index.css`:
-
+### Cambiar colores
+Edita `src/index.css`:
 ```css
 :root {
-  --primary-color: #e50914;
-  --secondary-color: #221f1f;
-  --background-color: #141414;
-  --text-color: #ffffff;
-  --text-secondary: #b3b3b3;
-  --card-bg: #2f2f2f;
+  --primary-color: #e50914;      /* Color principal */
+  --background-color: #141414;   /* Fondo */
+  --text-color: #ffffff;         /* Texto */
 }
 ```
 
-## 📝 Licencia
+### Cambiar idioma de la API
+Edita `src/infrastructure/api/tmdbClient.js`:
+```javascript
+url.searchParams.append('language', 'en-US'); // Cambiar a 'en-US', 'fr-FR', etc.
+```
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas:
+
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit cambios (`git commit -m 'feat: nueva funcionalidad'`)
+4. Push (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
+
+Ver [CONTRIBUTING.md](./CONTRIBUTING.md) para más detalles.
+
+## 📄 Licencia
 
 MIT
 
-## 🤝 Contribuciones
+## 🎉 Agradecimientos
 
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+- [TMDB](https://www.themoviedb.org/) por proporcionar la API
+- Comunidad de React por las herramientas y librerías
 
 ## 📧 Contacto
 
-Para preguntas o sugerencias, abre un issue en el repositorio.
+Para preguntas o sugerencias, abre un issue en GitHub.
+
+---
+
+**Desarrollado con ❤️ usando React y TMDB API**

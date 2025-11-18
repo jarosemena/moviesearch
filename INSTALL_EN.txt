@@ -1,0 +1,101 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║            🎬 MOVIE EXPLORER - INSTALLATION 🎬               ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+📋 PREREQUISITES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Node.js 16+ installed
+✓ npm or yarn installed
+✓ Modern web browser
+✓ Internet connection
+
+
+🚀 INSTALLATION IN 3 STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: Install dependencies
+────────────────────────────────────────────────────────────────
+$ npm install
+
+This will install all necessary project dependencies.
+
+
+STEP 2: Configure TMDB Access Token
+────────────────────────────────────────────────────────────────
+1. Get your free Access Token at:
+   https://www.themoviedb.org/settings/api
+
+2. Open the .env file in the project root
+
+3. Replace the line:
+   VITE_TMDB_ACCESS_TOKEN=
+   
+   With:
+   VITE_TMDB_ACCESS_TOKEN=your_access_token_here
+
+NOTE: Use the "Read Access Token" (JWT) from TMDB
+
+
+STEP 3: Run the application
+────────────────────────────────────────────────────────────────
+$ npm run dev
+
+The application will be available at:
+http://localhost:5173
+
+
+✅ VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+If everything is correct, you should see:
+✓ Popular movies on the main page
+✓ Working search bar
+✓ Available filters
+✓ "I don't know what to watch" button
+
+
+🎯 AVAILABLE COMMANDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+$ npm run dev       → Start development server
+$ npm run build     → Build for production
+$ npm run preview   → Preview production build
+$ npm test          → Run tests
+
+
+🆘 COMMON PROBLEMS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Error: "TMDB API Error: 401"
+→ Your Access Token is not configured correctly
+→ Verify that you're using the "Read Access Token" (JWT)
+→ Check the .env file and restart the server
+
+Error: "Cannot find module"
+→ Dependencies are not installed
+→ Run: npm install
+
+Blank page
+→ Open browser console (F12)
+→ Look for errors and verify configuration
+
+
+📚 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+README.md          → Complete documentation
+QUICK_START_EN.md  → Quick start guide
+SETUP_EN.md        → Detailed setup guide
+FEATURES_EN.md     → Features list
+ARCHITECTURE_EN.md → Architecture explanation
+CONTRIBUTING_EN.md → Contributing guide
+
+
+🎉 READY TO USE!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Enjoy exploring movies with Movie Explorer
+
+For more help, check the documentation or open an issue.
+
+╔══════════════════════════════════════════════════════════════╗
+║                    Developed with ❤️                         ║
+╚══════════════════════════════════════════════════════════════╝
