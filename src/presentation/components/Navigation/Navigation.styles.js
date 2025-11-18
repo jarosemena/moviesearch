@@ -2,17 +2,29 @@ import styled from 'styled-components';
 
 export const Nav = styled.nav`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   padding: 1rem 2rem;
   background: var(--card-bg);
-  border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--secondary);
   position: sticky;
   top: 0;
   z-index: 100;
-  justify-content: center;
 
   @media (max-width: 768px) {
     padding: 1rem;
+    gap: 0.5rem;
+  }
+`;
+
+export const NavButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+
+  @media (max-width: 768px) {
     gap: 0.5rem;
   }
 `;
