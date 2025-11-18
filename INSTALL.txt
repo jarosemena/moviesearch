@@ -1,0 +1,103 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║              🎬 MOVIE EXPLORER - INSTALACIÓN 🎬              ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+📋 REQUISITOS PREVIOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Node.js 16+ instalado
+✓ npm o yarn instalado
+✓ Navegador web moderno
+✓ Conexión a internet
+
+
+🚀 INSTALACIÓN EN 3 PASOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: Instalar dependencias
+────────────────────────────────────────────────────────────────
+$ npm install
+
+Esto instalará todas las dependencias necesarias del proyecto.
+
+
+PASO 2: Configurar Access Token de TMDB
+────────────────────────────────────────────────────────────────
+1. Obtén tu Access Token gratuito en:
+   https://www.themoviedb.org/settings/api
+
+2. Copia el "Read Access Token" (JWT que comienza con "eyJ...")
+
+3. Abre el archivo .env en la raíz del proyecto
+
+4. Reemplaza la línea:
+   VITE_TMDB_ACCESS_TOKEN=
+   
+   Por:
+   VITE_TMDB_ACCESS_TOKEN=tu_access_token_aqui
+
+NOTA: Usa el "Read Access Token" (JWT), NO la API Key v3
+
+
+PASO 3: Ejecutar la aplicación
+────────────────────────────────────────────────────────────────
+$ npm run dev
+
+La aplicación estará disponible en:
+http://localhost:5173
+
+
+✅ VERIFICACIÓN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Si todo está correcto, deberías ver:
+✓ Películas populares en la página principal
+✓ Barra de búsqueda funcionando
+✓ Filtros disponibles
+✓ Botón "No sé qué ver"
+
+
+🎯 COMANDOS DISPONIBLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+$ npm run dev       → Inicia servidor de desarrollo
+$ npm run build     → Construye para producción
+$ npm run preview   → Preview del build de producción
+$ npm test          → Ejecuta los tests
+
+
+🆘 PROBLEMAS COMUNES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Error: "TMDB API Error: 401"
+→ Tu Access Token no está configurado correctamente
+→ Verifica que uses el "Read Access Token" (JWT)
+→ Verifica el archivo .env y reinicia el servidor
+
+Error: "Cannot find module"
+→ Las dependencias no están instaladas
+→ Ejecuta: npm install
+
+Página en blanco
+→ Abre la consola del navegador (F12)
+→ Busca errores y verifica la configuración
+
+
+📚 DOCUMENTACIÓN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+README.md          → Documentación completa
+QUICK_START.md     → Guía de inicio rápido
+SETUP.md           → Guía de configuración detallada
+FEATURES.md        → Lista de características
+ARCHITECTURE.md    → Explicación de la arquitectura
+CONTRIBUTING.md    → Guía para contribuir
+
+
+🎉 ¡LISTO PARA USAR!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Disfruta explorando películas con Movie Explorer
+
+Para más ayuda, consulta la documentación o abre un issue.
+
+╔══════════════════════════════════════════════════════════════╗
+║                    Desarrollado con ❤️                       ║
+╚══════════════════════════════════════════════════════════════╝

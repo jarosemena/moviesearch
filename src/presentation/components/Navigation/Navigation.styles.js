@@ -1,0 +1,50 @@
+import styled from 'styled-components';
+
+export const Nav = styled.nav`
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: var(--card-bg);
+  border-bottom: 2px solid var(--secondary-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+`;
+
+export const NavButton = styled.button`
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: ${props => props.$active ? 'var(--primary-color)' : 'transparent'};
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background: ${props => props.$active ? '#c40812' : 'var(--secondary-color)'};
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+`;
+
+export const Badge = styled.span`
+  background: var(--background-color);
+  color: var(--text-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+`;
