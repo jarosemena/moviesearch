@@ -46,12 +46,14 @@ export const Filters = ({ filters, onChange }) => {
 
   return (
     <Container>
-      <ToggleButton onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? '▼' : '▶'} Filtros {filters.genres.length > 0 && `(${filters.genres.length})`}
+      <ToggleButton onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="2" fill="none" />
+        </svg>
+        Filtros {filters.genres.length > 0 && `(${filters.genres.length})`}
       </ToggleButton>
 
-      {isOpen && (
-        <FiltersContent>
+      <FiltersContent $isOpen={isOpen}>
           <FilterGroup>
             <Label>Ordenar por</Label>
             <Select
@@ -132,7 +134,6 @@ export const Filters = ({ filters, onChange }) => {
             </Select>
           </FilterGroup>
         </FiltersContent>
-      )}
     </Container>
   );
 };

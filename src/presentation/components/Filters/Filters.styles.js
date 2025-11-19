@@ -15,10 +15,18 @@ export const ToggleButton = styled.button`
   font-size: 1rem;
   font-weight: 600;
   text-align: left;
-  transition: var(--transition);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   &:hover {
-    color: var(--primary-color);
+    color: var(--primary);
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+    transform: ${props => props.$isOpen ? 'rotate(90deg)' : 'rotate(0deg)'};
   }
 `;
 
@@ -26,9 +34,14 @@ export const FiltersContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--secondary-color);
+  max-height: ${props => props.$isOpen ? '2000px' : '0'};
+  overflow: hidden;
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  margin-top: ${props => props.$isOpen ? '1rem' : '0'};
+  padding-top: ${props => props.$isOpen ? '1rem' : '0'};
+  border-top: ${props => props.$isOpen ? '1px solid var(--secondary)' : 'none'};
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: max-height, opacity;
 `;
 
 export const FilterGroup = styled.div`

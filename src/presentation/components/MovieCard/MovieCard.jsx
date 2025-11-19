@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { LazyImage } from '../LazyImage/LazyImage';
 import {
   Card,
   PosterContainer,
-  Poster,
-  PlaceholderPoster,
   FavoriteButton,
   Info,
   Title,
@@ -16,7 +14,6 @@ import {
 
 export const MovieCard = ({ movie, onClick }) => {
   const { toggleFavorite, isFavorite } = useApp();
-  const [imageError, setImageError] = useState(false);
   const favorite = isFavorite(movie.id);
 
   const handleFavoriteClick = (e) => {
@@ -27,18 +24,11 @@ export const MovieCard = ({ movie, onClick }) => {
   return (
     <Card onClick={() => onClick?.(movie)}>
       <PosterContainer>
-        {movie.posterUrl && !imageError ? (
-          <Poster
-            src={movie.posterUrl}
-            alt={movie.title}
-            onError={() => setImageError(true)}
-            loading="lazy"
-          />
-        ) : (
-          <PlaceholderPoster>
-            <span>🎬</span>
-          </PlaceholderPoster>
-        )}
+        <LazyImage
+          src={movie.posterUrl}
+          alt={movie.title}
+          placeholder="🎬"
+        />
         <FavoriteButton onClick={handleFavoriteClick} $isFavorite={favorite}>
           {favorite ? '❤️' : '🤍'}
         </FavoriteButton>
