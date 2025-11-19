@@ -26,6 +26,8 @@
   - Test state transitions between phases
   - Test progress calculation
   - Test cancel functionality
+
+
   - Test timing of phase transitions
   - _Requirements: 1.3, 1.5, 2.1, 2.2, 2.3, 3.1, 3.2, 4.1, 4.2, 5.1, 5.2_
 
