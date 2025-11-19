@@ -12,6 +12,8 @@
   - Verify correct splitting of candidates and final movie
   - _Requirements: 1.1, 1.2_
 
+
+
 - [ ] 2. Create animation state management hook
   - Create `useRandomMatchAnimation.js` custom hook
   - Implement state machine for animation phases (searching, candidate1, candidate2, candidate3, selecting, final)
