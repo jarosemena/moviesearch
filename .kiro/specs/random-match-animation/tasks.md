@@ -52,6 +52,7 @@
 - [ ] 5. Create RandomMatchModal component
   - Create `RandomMatchModal/RandomMatchModal.jsx` main component
   - Implement full-screen modal layout
+
   - Display searching animation phase
   - Sequentially reveal candidate cards
   - Display selection animation
@@ -60,6 +61,8 @@
   - Handle Escape key for cancellation
   - Prevent background interaction during animation
   - _Requirements: 1.4, 2.1, 2.2, 2.3, 4.1, 4.3, 4.4, 5.1, 5.2, 5.3, 5.4, 5.5_
+
+
 
 - [ ] 6. Create styled components for RandomMatchModal
   - Create `RandomMatchModal/RandomMatchModal.styles.js`

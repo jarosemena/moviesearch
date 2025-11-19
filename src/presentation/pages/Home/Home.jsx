@@ -5,7 +5,7 @@ import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { Filters } from '../../components/Filters/Filters';
 import { MovieGrid } from '../../components/MovieGrid/MovieGrid';
 import { MovieCarousel } from '../../components/MovieCarousel/MovieCarousel';
-import { Loading } from '../../components/Loading/Loading';
+import { RandomMatchModal } from '../../components/RandomMatchModal/RandomMatchModal';
 import {
   Container,
   Header,
@@ -35,6 +35,8 @@ export const Home = ({ onMovieClick }) => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [showRandomModal, setShowRandomModal] = useState(false);
+  const [randomMovies, setRandomMovies] = useState(null);
 
   const debouncedSearch = useDebounce(searchQuery, 300);
 
@@ -90,11 +92,12 @@ export const Home = ({ onMovieClick }) => {
   const handleRandomMovie = async () => {
     try {
       setLoading(true);
-      const movie = await getRandomMovieUseCase.execute(movies.map(m => m.id));
-      if (movie) {
-        onMovieClick(movie);
+      const result = await getRandomMovieUseCase.executeWithCandidates(movies.map(m => m.id));
+      if (result) {
+        setRandomMovies(result);
+        setShowRandomModal(true);
       } else {
-        setError('No se encontró ninguna película nueva');
+        setError('No se encontraron suficientes películas para la animación');
       }
     } catch (err) {
       setError('Error al buscar película aleatoria');
@@ -102,6 +105,22 @@ export const Home = ({ onMovieClick }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowRandomModal(false);
+    setRandomMovies(null);
+  };
+
+  const handleViewDetails = (movie) => {
+    setShowRandomModal(false);
+    onMovieClick(movie);
+  };
+
+  const handleStartNew = () => {
+    setShowRandomModal(false);
+    setRandomMovies(null);
+    handleRandomMovie();
   };
 
   return (
@@ -144,6 +163,16 @@ export const Home = ({ onMovieClick }) => {
         <LoadMoreButton onClick={handleLoadMore} disabled={loading}>
           {loading ? 'Cargando...' : 'Cargar más'}
         </LoadMoreButton>
+      )}
+
+      {showRandomModal && randomMovies && (
+        <RandomMatchModal
+          candidates={randomMovies.candidates}
+          finalMovie={randomMovies.final}
+          onClose={handleCloseModal}
+          onViewDetails={handleViewDetails}
+          onStartNew={handleStartNew}
+        />
       )}
     </Container>
   );
