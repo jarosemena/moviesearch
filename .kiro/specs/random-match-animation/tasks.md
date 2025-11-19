@@ -40,6 +40,8 @@
   - Implement smooth progress updates
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
 
+
+
 - [ ] 4. Create CandidateCard component
   - Create `RandomMatchModal/CandidateCard.jsx` component
   - Display movie poster, title, and rating
