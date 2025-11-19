@@ -14,7 +14,7 @@
 
 
 
-- [ ] 2. Create animation state management hook
+- [x] 2. Create animation state management hook
   - Create `useRandomMatchAnimation.js` custom hook
   - Implement state machine for animation phases (searching, candidate1, candidate2, candidate3, selecting, final)
   - Add progress tracking (0-100%)
@@ -31,7 +31,7 @@
   - Test timing of phase transitions
   - _Requirements: 1.3, 1.5, 2.1, 2.2, 2.3, 3.1, 3.2, 4.1, 4.2, 5.1, 5.2_
 
-- [ ] 3. Create ProgressBar component
+- [x] 3. Create ProgressBar component
   - Create `RandomMatchModal/ProgressBar.jsx` component
 
 
@@ -42,14 +42,14 @@
 
 
 
-- [ ] 4. Create CandidateCard component
+- [x] 4. Create CandidateCard component
   - Create `RandomMatchModal/CandidateCard.jsx` component
   - Display movie poster, title, and rating
   - Implement flip/reveal animation effect
   - Support reduced motion preference
   - _Requirements: 2.4, 2.5, 6.1, 6.2, 6.3_
 
-- [ ] 5. Create RandomMatchModal component
+- [x] 5. Create RandomMatchModal component
   - Create `RandomMatchModal/RandomMatchModal.jsx` main component
   - Implement full-screen modal layout
 
@@ -64,7 +64,7 @@
 
 
 
-- [ ] 6. Create styled components for RandomMatchModal
+- [x] 6. Create styled components for RandomMatchModal
   - Create `RandomMatchModal/RandomMatchModal.styles.js`
   - Implement responsive layout (mobile and desktop)
   - Add animation keyframes for searching, selection, and reveal phases
@@ -73,7 +73,7 @@
   - Prevent background scrolling
   - _Requirements: 6.1, 6.2, 6.3, 7.1, 7.2, 7.3, 7.4, 7.5_
 
-- [ ] 7. Integrate RandomMatchModal into Home page
+- [x] 7. Integrate RandomMatchModal into Home page
   - Add trigger button in `Home.jsx` for random match feature
   - Wire up modal state management
   - Connect to `GetRandomMovieUseCase` for fetching movies
