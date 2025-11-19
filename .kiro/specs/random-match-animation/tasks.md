@@ -33,6 +33,8 @@
 
 - [ ] 3. Create ProgressBar component
   - Create `RandomMatchModal/ProgressBar.jsx` component
+
+
   - Display progress percentage (0-100%)
   - Show current phase name
   - Implement smooth progress updates
