@@ -23,13 +23,17 @@
 - [x] 3. Update MovieGrid component for infinite scroll
 
 
+
   - Modify `src/presentation/components/MovieGrid/MovieGrid.jsx`
   - Integrate InfiniteScrollTrigger component at the end of the grid
   - Pass loading and hasMore props to trigger component
   - Ensure grid layout remains stable during loading
   - _Requirements: 1.1, 1.2, 2.3, 4.2_
 
-- [ ] 4. Update Home page to use infinite scroll
+- [x] 4. Update Home page to use infinite scroll
+
+
+
   - Modify `src/presentation/pages/Home/Home.jsx`
   - Integrate useInfiniteScroll hook
   - Remove or hide LoadMoreButton when infinite scroll is active

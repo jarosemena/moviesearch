@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../../context/AppContext';
 import { useDebounce } from '../../hooks/useDebounce';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { Filters } from '../../components/Filters/Filters';
 import { MovieGrid } from '../../components/MovieGrid/MovieGrid';
@@ -32,11 +33,14 @@ export const Home = ({ onMovieClick }) => {
   const [movies, setMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
+  const [loadMoreError, setLoadMoreError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [showRandomModal, setShowRandomModal] = useState(false);
   const [randomMovies, setRandomMovies] = useState(null);
+  const [infiniteScrollEnabled, setInfiniteScrollEnabled] = useState(true);
 
   const debouncedSearch = useDebounce(searchQuery, 300);
 
@@ -62,8 +66,14 @@ export const Home = ({ onMovieClick }) => {
 
   const loadMovies = async (pageNum, reset = false) => {
     try {
-      setLoading(true);
-      setError(null);
+      // Use different loading states for initial load vs. infinite scroll
+      if (reset || movies.length === 0) {
+        setLoading(true);
+        setError(null);
+      } else {
+        setLoadingMore(true);
+        setLoadMoreError(null);
+      }
 
       let response;
       if (debouncedSearch) {
@@ -76,18 +86,46 @@ export const Home = ({ onMovieClick }) => {
       setHasMore(pageNum < response.totalPages);
       setPage(pageNum);
     } catch (err) {
-      setError('Error al cargar películas. Por favor, intenta de nuevo.');
+      const errorMessage = 'Error al cargar películas. Por favor, intenta de nuevo.';
+      if (reset || movies.length === 0) {
+        setError(errorMessage);
+      } else {
+        setLoadMoreError(err);
+      }
       console.error(err);
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
 
+  // Callback for infinite scroll
+  const handleInfiniteScroll = useCallback(() => {
+    if (!loadingMore && hasMore && infiniteScrollEnabled) {
+      loadMovies(page + 1, false);
+    }
+  }, [loadingMore, hasMore, page, infiniteScrollEnabled]);
+
+  // Manual load more button handler
   const handleLoadMore = () => {
-    if (!loading && hasMore) {
+    if (!loading && !loadingMore && hasMore) {
       loadMovies(page + 1, false);
     }
   };
+
+  // Retry handler for failed infinite scroll loads
+  const handleRetry = () => {
+    setLoadMoreError(null);
+    loadMovies(page + 1, false);
+  };
+
+  // Initialize infinite scroll hook
+  const infiniteScrollRef = useInfiniteScroll(handleInfiniteScroll, {
+    hasMore,
+    isLoading: loadingMore,
+    threshold: 0.1,
+    rootMargin: '200px',
+  });
 
   const handleRandomMovie = async () => {
     try {
@@ -157,11 +195,18 @@ export const Home = ({ onMovieClick }) => {
             ? `No se encontraron resultados para "${debouncedSearch}"`
             : 'No se encontraron películas con estos filtros'
         }
+        // Infinite scroll props
+        infiniteScrollRef={infiniteScrollEnabled ? infiniteScrollRef : null}
+        hasMore={hasMore}
+        loadingMore={loadingMore}
+        error={loadMoreError}
+        onRetry={handleRetry}
       />
       
-      {hasMore && movies.length > 0 && (
-        <LoadMoreButton onClick={handleLoadMore} disabled={loading}>
-          {loading ? 'Cargando...' : 'Cargar más'}
+      {/* Show manual load more button when infinite scroll is disabled */}
+      {!infiniteScrollEnabled && hasMore && movies.length > 0 && (
+        <LoadMoreButton onClick={handleLoadMore} disabled={loading || loadingMore}>
+          {loadingMore ? 'Cargando...' : 'Cargar más'}
         </LoadMoreButton>
       )}
 
