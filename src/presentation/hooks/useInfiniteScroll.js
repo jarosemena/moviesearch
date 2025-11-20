@@ -21,12 +21,17 @@ export const useInfiniteScroll = (
     isLoading = false, 
     threshold = 0.1, 
     rootMargin = '100px',
-    scrollKey = 'infinite-scroll-position'
+    scrollKey = 'infinite-scroll-position',
+    debounceMs = 300,
+    minLoadDelay = 500
   } = {}
 ) => {
   const observerRef = useRef(null);
   const triggerRef = useRef(null);
   const scrollRestoredRef = useRef(false);
+  const debounceTimerRef = useRef(null);
+  const lastLoadTimeRef = useRef(0);
+  const loadingRef = useRef(false);
 
   const handleIntersection = useCallback(
     (entries) => {
@@ -36,12 +41,52 @@ export const useInfiniteScroll = (
       // 1. Element is intersecting (visible)
       // 2. Not currently loading
       // 3. There is more content to load
-      if (entry.isIntersecting && !isLoading && hasMore) {
-        onLoadMore();
+      // 4. Minimum delay has passed since last load
+      if (entry.isIntersecting && !isLoading && !loadingRef.current && hasMore) {
+        const now = Date.now();
+        const timeSinceLastLoad = now - lastLoadTimeRef.current;
+
+        // Clear any existing debounce timer
+        if (debounceTimerRef.current) {
+          clearTimeout(debounceTimerRef.current);
+        }
+
+        // If minimum delay hasn't passed, wait
+        if (timeSinceLastLoad < minLoadDelay) {
+          debounceTimerRef.current = setTimeout(() => {
+            loadingRef.current = true;
+            lastLoadTimeRef.current = Date.now();
+            onLoadMore();
+            // Reset loading flag after a short delay
+            setTimeout(() => {
+              loadingRef.current = false;
+            }, 100);
+          }, minLoadDelay - timeSinceLastLoad);
+        } else {
+          // Debounce the load to prevent rapid firing
+          debounceTimerRef.current = setTimeout(() => {
+            loadingRef.current = true;
+            lastLoadTimeRef.current = Date.now();
+            onLoadMore();
+            // Reset loading flag after a short delay
+            setTimeout(() => {
+              loadingRef.current = false;
+            }, 100);
+          }, debounceMs);
+        }
       }
     },
-    [onLoadMore, isLoading, hasMore]
+    [onLoadMore, isLoading, hasMore, debounceMs, minLoadDelay]
   );
+
+  // Cleanup debounce timer
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   // Save scroll position before unmount
   useEffect(() => {
