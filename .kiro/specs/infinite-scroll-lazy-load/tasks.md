@@ -48,7 +48,9 @@
   - Ensure smooth scrolling experience
   - _Requirements: 1.1, 1.2, 1.3, 2.1, 2.2_
 
-- [ ] 6. Add scroll position restoration
+- [x] 6. Add scroll position restoration
+
+
   - Implement scroll position save/restore in useInfiniteScroll hook
   - Save scroll position when navigating away from page
   - Restore scroll position when returning to page

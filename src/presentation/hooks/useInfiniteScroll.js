@@ -3,6 +3,7 @@ import { useEffect, useRef, useCallback } from 'react';
 /**
  * Custom hook for implementing infinite scroll functionality
  * Uses Intersection Observer API to detect when user reaches bottom of content
+ * Includes scroll position restoration for better UX when navigating back
  * 
  * @param {Function} onLoadMore - Callback function to load more content
  * @param {Object} options - Configuration options
@@ -10,14 +11,22 @@ import { useEffect, useRef, useCallback } from 'react';
  * @param {boolean} options.isLoading - Whether content is currently loading
  * @param {string} options.threshold - Intersection threshold (0-1)
  * @param {string} options.rootMargin - Root margin for intersection observer
+ * @param {string} options.scrollKey - Unique key for storing scroll position
  * @returns {Object} - Ref to attach to trigger element
  */
 export const useInfiniteScroll = (
   onLoadMore,
-  { hasMore = true, isLoading = false, threshold = 0.1, rootMargin = '100px' } = {}
+  { 
+    hasMore = true, 
+    isLoading = false, 
+    threshold = 0.1, 
+    rootMargin = '100px',
+    scrollKey = 'infinite-scroll-position'
+  } = {}
 ) => {
   const observerRef = useRef(null);
   const triggerRef = useRef(null);
+  const scrollRestoredRef = useRef(false);
 
   const handleIntersection = useCallback(
     (entries) => {
@@ -34,6 +43,44 @@ export const useInfiniteScroll = (
     [onLoadMore, isLoading, hasMore]
   );
 
+  // Save scroll position before unmount
+  useEffect(() => {
+    const saveScrollPosition = () => {
+      const scrollPosition = window.scrollY || window.pageYOffset;
+      sessionStorage.setItem(scrollKey, scrollPosition.toString());
+    };
+
+    // Save scroll position periodically and on unmount
+    const handleScroll = () => {
+      saveScrollPosition();
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      saveScrollPosition();
+    };
+  }, [scrollKey]);
+
+  // Restore scroll position on mount
+  useEffect(() => {
+    if (!scrollRestoredRef.current) {
+      const savedPosition = sessionStorage.getItem(scrollKey);
+      if (savedPosition) {
+        // Use requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: parseInt(savedPosition, 10),
+            behavior: 'auto', // instant restore
+          });
+          scrollRestoredRef.current = true;
+        });
+      }
+    }
+  }, [scrollKey]);
+
+  // Intersection Observer setup
   useEffect(() => {
     // Create Intersection Observer
     const options = {
