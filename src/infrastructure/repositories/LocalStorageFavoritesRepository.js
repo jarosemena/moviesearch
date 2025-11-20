@@ -1,4 +1,5 @@
 import { FavoritesRepository } from '../../domain/repositories/FavoritesRepository';
+import { Movie } from '../../domain/models/Movie';
 
 const STORAGE_KEY = 'movie-explorer-favorites';
 
@@ -6,7 +7,11 @@ export class LocalStorageFavoritesRepository extends FavoritesRepository {
   getFavorites() {
     try {
       const data = localStorage.getItem(STORAGE_KEY);
-      return data ? JSON.parse(data) : [];
+      if (!data) return [];
+      
+      const favorites = JSON.parse(data);
+      // Reconstruct Movie objects to restore getters (posterUrl, backdropUrl, year)
+      return favorites.map(fav => new Movie(fav));
     } catch (error) {
       console.error('Error reading favorites:', error);
       return [];
