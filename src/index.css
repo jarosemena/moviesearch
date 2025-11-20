@@ -2,18 +2,37 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color var(--transition-duration) var(--transition-timing),
+              color var(--transition-duration) var(--transition-timing),
+              border-color var(--transition-duration) var(--transition-timing),
+              box-shadow var(--transition-duration) var(--transition-timing);
 }
 
 :root {
+  /* Core colors (will be overridden by ThemeContext) */
   --primary-color: #e50914;
   --secondary-color: #221f1f;
   --background-color: #141414;
   --text-color: #ffffff;
   --text-secondary: #b3b3b3;
   --card-bg: #2f2f2f;
+  --card-border: #3f3f3f;
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --hover-bg: #3a3a3a;
+  --input-border: #4a4a4a;
+  --input-focus: #e50914;
+  --overlay-color: rgba(0, 0, 0, 0.85);
+  --skeleton-base: #2a2a2a;
+  --skeleton-highlight: #3a3a3a;
+  
+  /* Legacy variable for backwards compatibility */
   --hover-color: #e50914;
+  
+  /* Design tokens */
   --border-radius: 8px;
   --transition: all 0.3s ease;
+  --transition-duration: 300ms;
+  --transition-timing: ease-in-out;
 }
 
 body {

@@ -13,8 +13,28 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     // Apply theme colors to CSS variables
     const root = document.documentElement;
+    
+    // Define CSS variable mapping for better control
+    const cssVarMapping = {
+      primary: '--primary-color',
+      secondary: '--secondary-color',
+      background: '--background-color',
+      text: '--text-color',
+      textSecondary: '--text-secondary',
+      cardBg: '--card-bg',
+      cardBorder: '--card-border',
+      cardShadow: '--card-shadow',
+      hoverBg: '--hover-bg',
+      inputBorder: '--input-border',
+      inputFocus: '--input-focus',
+      overlay: '--overlay-color',
+      skeletonBase: '--skeleton-base',
+      skeletonHighlight: '--skeleton-highlight',
+    };
+    
+    // Apply each color to its corresponding CSS variable
     Object.entries(theme.colors).forEach(([key, value]) => {
-      const cssVarName = `--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+      const cssVarName = cssVarMapping[key] || `--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
       root.style.setProperty(cssVarName, value);
     });
   }, [theme]);

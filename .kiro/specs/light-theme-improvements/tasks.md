@@ -1,17 +1,24 @@
 # Implementation Plan - Light Theme Improvements
 
-- [ ] 1. Update Theme Model with enhanced color palette
+- [x] 1. Update Theme Model with enhanced color palette
+
+
   - Modify `src/domain/models/Theme.js` to include new color variables for light theme
   - Add cardBorder, cardShadow, hoverBg, inputBorder, inputFocus, overlay, skeletonBase, and skeletonHighlight colors
   - Ensure all colors meet WCAG AA contrast requirements
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 3.1, 3.2, 3.4_
 
-- [ ] 2. Update ThemeContext to apply new CSS variables
+- [x] 2. Update ThemeContext to apply new CSS variables
+
+
   - Modify `src/presentation/context/ThemeContext.jsx` to map new color properties to CSS variables
   - Ensure proper camelCase to kebab-case conversion for CSS variable names
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
-- [ ] 3. Add global transition styles
+- [x] 3. Add global transition styles
+
+
+
   - Update `src/index.css` to add transition properties for color changes
   - Add CSS variables for transition duration and timing function
   - Apply transitions to background-color, color, border-color, and box-shadow properties
