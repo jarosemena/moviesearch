@@ -54,6 +54,7 @@
 - [x] 7. Update Filters component styling
 
 
+
   - Modify `src/presentation/components/Filters/Filters.styles.js`
   - Update select and input borders to use `var(--input-border)`
   - Improve active/inactive genre chip contrast

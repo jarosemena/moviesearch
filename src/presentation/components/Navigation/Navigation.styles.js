@@ -34,9 +34,9 @@ export const NavButton = styled.button`
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  background: ${props => props.$active ? 'var(--primary-color)' : 'transparent'};
-  color: var(--text-color);
-  border: 1px solid ${props => props.$active ? 'var(--primary-color)' : 'transparent'};
+  background: ${props => props.$active ? 'var(--button-bg)' : 'transparent'};
+  color: ${props => props.$active ? 'var(--button-text)' : 'var(--text-color)'};
+  border: 1px solid ${props => props.$active ? 'var(--button-bg)' : 'transparent'};
   border-radius: var(--border-radius);
   transition: var(--transition);
   position: relative;
@@ -45,8 +45,12 @@ export const NavButton = styled.button`
   gap: 0.5rem;
 
   &:hover {
-    background: ${props => props.$active ? '#c40812' : 'var(--hover-bg)'};
-    border-color: ${props => props.$active ? '#c40812' : 'var(--card-border)'};
+    background: ${props => props.$active ? 'var(--button-hover)' : 'var(--hover-bg)'};
+    border-color: ${props => props.$active ? 'var(--button-hover)' : 'var(--card-border)'};
+  }
+
+  &:active {
+    background: ${props => props.$active ? 'var(--button-active)' : 'var(--hover-bg)'};
   }
 
   @media (max-width: 768px) {

@@ -19,6 +19,10 @@
   --card-border: #3f3f3f;
   --card-shadow: rgba(0, 0, 0, 0.3);
   --hover-bg: #3a3a3a;
+  --button-bg: #e50914;
+  --button-text: #ffffff;
+  --button-hover: #c40812;
+  --button-active: #a00610;
   --input-border: #4a4a4a;
   --input-focus: #e50914;
   --overlay-color: rgba(0, 0, 0, 0.85);

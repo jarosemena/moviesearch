@@ -124,13 +124,18 @@ export const FavoriteButton = styled.button`
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  background: ${props => props.$isFavorite ? 'var(--primary-color)' : 'var(--secondary-color)'};
-  color: var(--text-color);
+  background: ${props => props.$isFavorite ? 'var(--primary-color)' : 'var(--button-bg)'};
+  color: ${props => props.$isFavorite ? '#ffffff' : 'var(--button-text)'};
+  border: 1px solid ${props => props.$isFavorite ? 'var(--primary-color)' : 'var(--card-border)'};
   border-radius: var(--border-radius);
   transition: var(--transition);
 
   &:hover {
     transform: translateY(-2px);
-    background: ${props => props.$isFavorite ? '#c40812' : 'var(--card-bg)'};
+    background: ${props => props.$isFavorite ? '#c40812' : 'var(--button-hover)'};
+  }
+
+  &:active {
+    background: ${props => props.$isFavorite ? '#a00610' : 'var(--button-active)'};
   }
 `;

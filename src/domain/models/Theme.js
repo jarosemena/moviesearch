@@ -24,6 +24,12 @@ export class Theme {
         cardShadow: 'rgba(0, 0, 0, 0.08)',
         hoverBg: '#f5f5f5',
         
+        // Button colors
+        buttonBg: '#e8e8e8',
+        buttonText: '#1a1a1a',
+        buttonHover: '#d0d0d0',
+        buttonActive: '#b8b8b8',
+        
         // Input colors
         inputBorder: '#d0d0d0',
         inputFocus: '#e50914',
@@ -50,6 +56,12 @@ export class Theme {
       cardBorder: '#3f3f3f',
       cardShadow: 'rgba(0, 0, 0, 0.3)',
       hoverBg: '#3a3a3a',
+      
+      // Button colors (keep red for dark theme)
+      buttonBg: '#e50914',
+      buttonText: '#ffffff',
+      buttonHover: '#c40812',
+      buttonActive: '#a00610',
       
       // Input colors
       inputBorder: '#4a4a4a',

@@ -47,15 +47,19 @@ export const RandomButton = styled.button`
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  background: var(--primary-color);
-  color: var(--text-color);
+  background: var(--button-bg);
+  color: var(--button-text);
   border-radius: var(--border-radius);
   transition: var(--transition);
   white-space: nowrap;
 
   &:hover:not(:disabled) {
-    background: #c40812;
+    background: var(--button-hover);
     transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--button-active);
   }
 
   &:disabled {
@@ -72,15 +76,20 @@ export const LoadMoreButton = styled.button`
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  background: var(--card-bg);
-  color: var(--text-color);
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--card-border);
   border-radius: var(--border-radius);
   margin: 2rem auto;
   display: block;
   transition: var(--transition);
 
   &:hover:not(:disabled) {
-    background: var(--secondary-color);
+    background: var(--button-hover);
+  }
+
+  &:active:not(:disabled) {
+    background: var(--button-active);
   }
 
   &:disabled {

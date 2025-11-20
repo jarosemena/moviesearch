@@ -193,25 +193,26 @@ export const ActionButton = styled.button`
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: ${props => props.$secondary ? 'transparent' : 'var(--primary-color)'};
-  color: var(--text-color);
-  border: ${props => props.$secondary ? '2px solid var(--primary-color)' : 'none'};
+  background: ${props => props.$secondary ? 'transparent' : 'var(--button-bg)'};
+  color: ${props => props.$secondary ? 'var(--text-color)' : 'var(--button-text)'};
+  border: ${props => props.$secondary ? '2px solid var(--button-bg)' : '1px solid var(--card-border)'};
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+    background: ${props => props.$secondary ? 'var(--hover-bg)' : 'var(--button-hover)'};
+    box-shadow: 0 4px 12px var(--card-shadow);
   }
 
   &:active {
     transform: translateY(0);
+    background: ${props => props.$secondary ? 'var(--hover-bg)' : 'var(--button-active)'};
   }
 
   &:focus {
-    outline: 2px solid var(--primary-color);
+    outline: 2px solid var(--input-focus);
     outline-offset: 2px;
   }
 `;

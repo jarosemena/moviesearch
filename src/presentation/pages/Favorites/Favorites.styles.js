@@ -34,13 +34,18 @@ export const BackButton = styled.button`
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  background: var(--card-bg);
-  color: var(--text-color);
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--card-border);
   border-radius: var(--border-radius);
   transition: var(--transition);
   align-self: flex-start;
 
   &:hover {
-    background: var(--secondary-color);
+    background: var(--button-hover);
+  }
+
+  &:active {
+    background: var(--button-active);
   }
 `;
