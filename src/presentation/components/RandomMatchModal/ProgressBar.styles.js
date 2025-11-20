@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const ProgressBarContainer = styled.div`
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const ProgressBarLabel = styled.div`
   color: var(--text-color);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
   text-align: center;

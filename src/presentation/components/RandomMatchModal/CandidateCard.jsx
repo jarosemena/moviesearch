@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   CardContainer,
   CardImage,
@@ -7,21 +7,48 @@ import {
   CardRating,
 } from './CandidateCard.styles';
 
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
-
 export const CandidateCard = ({ movie, prefersReducedMotion = false }) => {
+  const [imageError, setImageError] = useState(false);
+
   if (!movie) return null;
 
-  const posterUrl = movie.poster_path
-    ? `${IMAGE_BASE_URL}${movie.poster_path}`
-    : '/placeholder-poster.png';
+  // Use the posterUrl getter from Movie model, or construct it from posterPath
+  const posterUrl = movie.posterUrl || (movie.posterPath 
+    ? `https://image.tmdb.org/t/p/w500${movie.posterPath}`
+    : null);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  const rating = movie.voteAverage || 0;
 
   return (
     <CardContainer $reducedMotion={prefersReducedMotion}>
-      <CardImage src={posterUrl} alt={movie.title} />
+      {posterUrl && !imageError ? (
+        <CardImage 
+          src={posterUrl} 
+          alt={movie.title}
+          onError={handleImageError}
+          loading="eager"
+        />
+      ) : (
+        <CardImage 
+          as="div"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '4rem',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+          }}
+        >
+          🎬
+        </CardImage>
+      )}
       <CardInfo>
         <CardTitle>{movie.title}</CardTitle>
-        <CardRating>⭐ {movie.vote_average?.toFixed(1) || 'N/A'}</CardRating>
+        <CardRating>⭐ {rating > 0 ? rating.toFixed(1) : 'N/A'}</CardRating>
       </CardInfo>
     </CardContainer>
   );

@@ -27,12 +27,12 @@ export const CardContainer = styled.div`
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
+  max-width: 280px;
   width: 100%;
   animation: ${props => props.$reducedMotion ? fadeIn : flipIn} 0.6s ease-out;
   
   @media (max-width: 768px) {
-    max-width: 300px;
+    max-width: 240px;
   }
 `;
 
@@ -45,23 +45,28 @@ export const CardImage = styled.img`
 `;
 
 export const CardInfo = styled.div`
-  padding: 1.5rem;
+  padding: 1rem;
   background: var(--card-bg);
 `;
 
 export const CardTitle = styled.h3`
   color: var(--text-color);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   
   @media (max-width: 768px) {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 `;
 
 export const CardRating = styled.div`
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
 `;

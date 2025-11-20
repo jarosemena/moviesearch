@@ -57,10 +57,10 @@ export const ModalContent = styled.div`
   background: var(--secondary-color);
   border-radius: 16px;
   padding: 2rem;
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 85vh;
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -70,6 +70,7 @@ export const ModalContent = styled.div`
   @media (max-width: 768px) {
     padding: 1.5rem;
     max-width: 100%;
+    max-height: 90vh;
   }
 `;
 
@@ -102,8 +103,8 @@ export const SearchingAnimation = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
-  gap: 2rem;
+  min-height: 250px;
+  gap: 1.5rem;
   animation: ${props => props.$reducedMotion ? fadeIn : pulse} 2s ease-in-out infinite;
 `;
 
@@ -131,8 +132,8 @@ export const SelectingAnimation = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
-  gap: 2rem;
+  min-height: 250px;
+  gap: 1.5rem;
   animation: ${props => props.$reducedMotion ? fadeIn : spin} 2s linear infinite;
 `;
 
@@ -159,7 +160,7 @@ export const FinalReveal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
   animation: ${scaleIn} 0.6s ease-out;
 `;
