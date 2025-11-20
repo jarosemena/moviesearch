@@ -60,6 +60,7 @@
 - [x] 7. Optimize performance with debouncing
 
 
+
   - Add debounce mechanism to prevent excessive API calls
   - Implement request cancellation for outdated requests
   - Add minimum delay between consecutive loads

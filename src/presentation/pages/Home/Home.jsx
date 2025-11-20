@@ -60,11 +60,7 @@ export const Home = ({ onMovieClick }) => {
     loadTrending();
   }, []);
 
-  useEffect(() => {
-    loadMovies(1, true);
-  }, [debouncedSearch, filters]);
-
-  const loadMovies = async (pageNum, reset = false) => {
+  const loadMovies = useCallback(async (pageNum, reset = false) => {
     try {
       // Use different loading states for initial load vs. infinite scroll
       if (reset || movies.length === 0) {
@@ -97,14 +93,19 @@ export const Home = ({ onMovieClick }) => {
       setLoading(false);
       setLoadingMore(false);
     }
-  };
+  }, [debouncedSearch, filters, movies.length, searchMoviesUseCase, getMoviesUseCase]);
+
+  useEffect(() => {
+    loadMovies(1, true);
+  }, [debouncedSearch, filters]);
 
   // Callback for infinite scroll
   const handleInfiniteScroll = useCallback(() => {
     if (!loadingMore && hasMore && infiniteScrollEnabled) {
+      console.log('Infinite scroll triggered - loading page:', page + 1);
       loadMovies(page + 1, false);
     }
-  }, [loadingMore, hasMore, page, infiniteScrollEnabled]);
+  }, [loadingMore, hasMore, page, infiniteScrollEnabled, loadMovies]);
 
   // Manual load more button handler
   const handleLoadMore = () => {
