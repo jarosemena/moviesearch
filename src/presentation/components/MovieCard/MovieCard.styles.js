@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
   background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: var(--border-radius);
   overflow: hidden;
   cursor: pointer;
@@ -9,10 +10,12 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: 0 2px 8px var(--card-shadow);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px var(--card-shadow);
+    background: var(--hover-bg);
   }
 `;
 

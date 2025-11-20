@@ -7,7 +7,8 @@ export const Nav = styled.nav`
   gap: 1rem;
   padding: 1rem 2rem;
   background: var(--card-bg);
-  border-bottom: 2px solid var(--secondary);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 2px 4px var(--card-shadow);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -35,6 +36,7 @@ export const NavButton = styled.button`
   font-weight: 600;
   background: ${props => props.$active ? 'var(--primary-color)' : 'transparent'};
   color: var(--text-color);
+  border: 1px solid ${props => props.$active ? 'var(--primary-color)' : 'transparent'};
   border-radius: var(--border-radius);
   transition: var(--transition);
   position: relative;
@@ -43,7 +45,8 @@ export const NavButton = styled.button`
   gap: 0.5rem;
 
   &:hover {
-    background: ${props => props.$active ? '#c40812' : 'var(--secondary-color)'};
+    background: ${props => props.$active ? '#c40812' : 'var(--hover-bg)'};
+    border-color: ${props => props.$active ? '#c40812' : 'var(--card-border)'};
   }
 
   @media (max-width: 768px) {
@@ -54,9 +57,10 @@ export const NavButton = styled.button`
 
 export const Badge = styled.span`
   background: var(--background-color);
-  color: var(--text-color);
+  color: var(--primary-color);
   padding: 0.25rem 0.5rem;
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 700;
+  border: 1px solid var(--card-border);
 `;

@@ -24,28 +24,36 @@
   - Apply transitions to background-color, color, border-color, and box-shadow properties
   - _Requirements: 4.1, 4.2, 4.3_
 
-- [ ] 4. Update MovieCard component styling
+- [x] 4. Update MovieCard component styling
+
+
   - Modify `src/presentation/components/MovieCard/MovieCard.styles.js`
   - Add border using `var(--card-border)` for light theme definition
   - Update box-shadow to use `var(--card-shadow)`
   - Adjust hover state to use `var(--hover-bg)` for background
   - _Requirements: 2.2, 5.1_
 
-- [ ] 5. Update Navigation component styling
+- [x] 5. Update Navigation component styling
+
+
   - Modify `src/presentation/components/Navigation/Navigation.styles.js`
   - Update background color to use theme-aware variables
   - Improve active state styling for better visibility in light theme
   - Add subtle border-bottom for visual separation
   - _Requirements: 2.1_
 
-- [ ] 6. Update SearchBar component styling
+- [x] 6. Update SearchBar component styling
+
+
   - Modify `src/presentation/components/SearchBar/SearchBar.styles.js`
   - Use `var(--input-border)` for input borders
   - Use `var(--input-focus)` for focus state borders
   - Adjust placeholder text color for better visibility in light theme
   - _Requirements: 2.3, 3.3_
 
-- [ ] 7. Update Filters component styling
+- [x] 7. Update Filters component styling
+
+
   - Modify `src/presentation/components/Filters/Filters.styles.js`
   - Update select and input borders to use `var(--input-border)`
   - Improve active/inactive genre chip contrast

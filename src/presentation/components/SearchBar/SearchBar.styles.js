@@ -10,7 +10,7 @@ export const Input = styled.input`
   width: 100%;
   padding: 1rem 3rem 1rem 1rem;
   font-size: 1rem;
-  border: 2px solid var(--card-bg);
+  border: 1px solid var(--input-border);
   border-radius: var(--border-radius);
   background: var(--card-bg);
   color: var(--text-color);
@@ -18,11 +18,13 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.1);
   }
 
   &::placeholder {
     color: var(--text-secondary);
+    opacity: 0.7;
   }
 `;
 
