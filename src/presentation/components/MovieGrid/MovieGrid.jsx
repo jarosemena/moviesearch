@@ -1,14 +1,22 @@
 import { MovieCard } from '../MovieCard/MovieCard';
 import { MovieCardSkeleton } from '../Skeleton/MovieCardSkeleton';
-import { Grid, EmptyState, EmptyIcon, EmptyText } from './MovieGrid.styles';
+import { InfiniteScrollTrigger } from '../InfiniteScrollTrigger/InfiniteScrollTrigger';
+import { Grid, EmptyState, EmptyIcon, EmptyText, GridContainer } from './MovieGrid.styles';
 
 export const MovieGrid = ({ 
   movies, 
   onMovieClick, 
   emptyMessage = 'No se encontraron películas',
   isLoading = false,
-  skeletonCount = 12
+  skeletonCount = 12,
+  // Infinite scroll props
+  infiniteScrollRef = null,
+  hasMore = false,
+  loadingMore = false,
+  error = null,
+  onRetry = null,
 }) => {
+  // Initial loading state (no movies yet)
   if (isLoading && movies.length === 0) {
     return (
       <Grid>
@@ -19,7 +27,8 @@ export const MovieGrid = ({
     );
   }
 
-  if (movies.length === 0) {
+  // Empty state (no movies found)
+  if (movies.length === 0 && !isLoading) {
     return (
       <EmptyState>
         <EmptyIcon>🎬</EmptyIcon>
@@ -28,11 +37,26 @@ export const MovieGrid = ({
     );
   }
 
+  // Movies grid with optional infinite scroll trigger
   return (
-    <Grid>
-      {movies.map(movie => (
-        <MovieCard key={movie.id} movie={movie} onClick={onMovieClick} />
-      ))}
-    </Grid>
+    <GridContainer>
+      <Grid>
+        {movies.map(movie => (
+          <MovieCard key={movie.id} movie={movie} onClick={onMovieClick} />
+        ))}
+      </Grid>
+      
+      {/* Infinite scroll trigger (only if ref is provided) */}
+      {infiniteScrollRef && (
+        <InfiniteScrollTrigger
+          triggerRef={infiniteScrollRef}
+          isLoading={loadingMore}
+          hasMore={hasMore}
+          error={error}
+          onRetry={onRetry}
+          skeletonCount={6}
+        />
+      )}
+    </GridContainer>
   );
 };
