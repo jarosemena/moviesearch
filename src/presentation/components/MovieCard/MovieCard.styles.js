@@ -19,14 +19,14 @@ export const Card = styled.div`
 export const PosterContainer = styled.div`
   position: relative;
   width: 100%;
-  padding-top: 150%;
+  padding-top: 0%;
   overflow: hidden;
 `;
 
 export const FavoriteButton = styled.button`
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 4px;
+  right: 4px;
   background: rgba(0, 0, 0, 0.7);
   border: none;
   border-radius: 50%;
