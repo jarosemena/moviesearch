@@ -7,7 +7,9 @@
   - Add method `executeWithCandidates()` that returns 3 candidates and 1 final movie
   - _Requirements: 1.1, 1.2_
 
-- [ ]* 1.1 Update tests for GetRandomMovieUseCase
+- [x]* 1.1 Update tests for GetRandomMovieUseCase
+
+
   - Add tests for `executeWithCandidates()` method
   - Verify correct splitting of candidates and final movie
   - _Requirements: 1.1, 1.2_
@@ -61,6 +63,7 @@
   - Handle Escape key for cancellation
   - Prevent background interaction during animation
   - _Requirements: 1.4, 2.1, 2.2, 2.3, 4.1, 4.3, 4.4, 5.1, 5.2, 5.3, 5.4, 5.5_
+
 
 
 
